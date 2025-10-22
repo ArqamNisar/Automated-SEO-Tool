@@ -4,7 +4,7 @@ from django.contrib import messages
 from .models import Task, Category
 from .forms import TaskForm
 
-
+#Adding a comment to check git tracking
 @login_required
 def task_list(request):
     tasks = Task.objects.filter(user=request.user).order_by('-created_at')
