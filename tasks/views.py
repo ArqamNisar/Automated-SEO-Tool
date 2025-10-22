@@ -4,6 +4,12 @@ from django.contrib import messages
 from .models import Task, Category
 from .forms import TaskForm
 
+#Lets add another function for git tracking and testing:
+# @login_required
+# def task_list(request):
+#     tasks = Task.objects.filter(user=request.user).order_by('-created_at')
+#     return render(request, 'tasks/task_list.html', {'tasks': tasks})
+
 #Adding a comment to check git tracking
 @login_required
 def task_list(request):
