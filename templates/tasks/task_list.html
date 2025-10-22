@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Your Tasks</h2>
+
+<a href="{% url 'task_create' %}">➕ Add New Task</a>
+
+<ul>
+  {% for task in tasks %}
+    <li>
+      {% if task.completed %}
+        <s>{{ task.title }}</s>
+      {% else %}
+        {{ task.title }}
+      {% endif %}
+      - {{ task.get_priority_display }}
+      {% if task.due_date %} | Due: {{ task.due_date }}{% endif %}
+      <a href="{% url 'task_toggle' task.id %}">
+        {% if task.completed %}Mark Incomplete{% else %}Mark Complete{% endif %}
+      </a> |
+      <a href="{% url 'task_update' task.id %}">Edit</a> |
+      <a href="{% url 'task_delete' task.id %}">Delete</a>
+    </li>
+  {% empty %}
+    <li>No tasks yet. <a href="{% url 'task_create' %}">Add one</a>.</li>
+  {% endfor %}
+</ul>
+{% endblock %}
